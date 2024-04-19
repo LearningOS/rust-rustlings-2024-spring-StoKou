@@ -20,7 +20,6 @@
 //
 // No hints this time!
 
-// I AM NOT DONE
 
 pub enum Command {
     Uppercase,
@@ -37,12 +36,17 @@ mod my_module {
         let mut output: Vec<String> = vec![];
         for (string, command) in input.iter() {
             // TODO: Complete the function body. You can do it!
-            match command{
-                Command::Uppercase=>string.to_uppercase(),
-                Command::Trim=>string.trim(),
-                Command::Append(num)=>string.push_str(&"bar".repeat(*num)),
+            let mi=match command{
+                Command::Uppercase=>string.to_ascii_uppercase().to_string(),
+                Command::Trim=>string.trim().to_string(),
+                Command::Append(num)=>{
+                    let r="bar".repeat(*num);
+                    let mut new_s=string.to_string();
+                    new_s.push_str(&r);
+                    new_s
+                }
             };
-            output.push(string);
+            output.push(mi);
         }
         output
     }

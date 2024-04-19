@@ -14,7 +14,7 @@
 // Execute `rustlings hint hashmaps2` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+
 
 use std::collections::HashMap;
 
@@ -40,6 +40,21 @@ fn fruit_basket(basket: &mut HashMap<Fruit, u32>) {
         // TODO: Insert new fruits if they are not already present in the
         // basket. Note that you are not allowed to put any type of fruit that's
         // already present!
+        
+        // 检查篮子中已有的水果数量，并相应地添加新的水果
+    if basket.get(&Fruit::Apple).copied().unwrap_or(0) < 5 {
+        basket.entry(Fruit::Apple).or_insert(5);
+    }
+    if basket.get(&Fruit::Mango).copied().unwrap_or(0) < 5 {
+        basket.entry(Fruit::Mango).or_insert(5);
+    }
+    if basket.get(&Fruit::Lychee).copied().unwrap_or(0) < 5 {
+        basket.entry(Fruit::Lychee).or_insert(5);
+    }
+    // 添加新的水果类型，确保总数超过 11
+    basket.entry(Fruit::Banana).or_insert(5);
+    basket.entry(Fruit::Pineapple).or_insert(5);
+
     }
 }
 
