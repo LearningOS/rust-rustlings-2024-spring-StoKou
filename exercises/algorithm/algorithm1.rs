@@ -72,11 +72,27 @@ impl<T> LinkedList<T> {
 	pub fn merge(list_a:LinkedList<T>,list_b:LinkedList<T>) -> Self
 	{
 		//TODO
-		Self {
-            length: 0,
-            start: None,
-            end: None,
+		let mut res = LinkedList::<i32>::new();
+        let (i,j)=(list_a.start,list_b.start);
+        while i.is_some() && j.is_some(){
+            if unsafe{&(*i.as_ptr()).val<&(*j.as_ptr()).val}{
+                res.add(list_a.get(i));
+                i+=1;
+            }else{
+                res.add(list_b.get(j));
+                j+=1;
+            }
         }
+        while i!=list_a.end{
+            res.add(list_a.get(i));
+            i+=1;
+        }
+        while j!=list_b.end{
+            res.add(list_b.get(j));
+            j+=1;
+        }
+        res.length=list_a.length+list_b.length;
+        
 	}
 }
 
