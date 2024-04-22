@@ -74,6 +74,19 @@ impl<T> LinkedList<T> {
     }
 	pub fn reverse(&mut self){
 		// TODO
+        let mut current=self.start;
+        let mut pre:Option<NonNull<Node<T>>>=None;
+        let mut ne:Option<NonNull<Node<T>>>=None;
+        self.end=current;
+        while let Some(mut cur_ptr) = current {
+            let mut cur=unsafe{& *current.as_ptr()};
+            ne=cur.next;
+            cur.next=pre;
+            cur.prev=ne;//双向链表
+            pre=current;
+            current=ne;
+        }
+        self.start=current;
 	}
 }
 
