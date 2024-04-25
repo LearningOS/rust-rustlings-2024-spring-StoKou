@@ -11,6 +11,7 @@ fn main() {
         .unwrap()
         .as_secs(); // What's the use of this timestamp here?
     
+        println!("cargo:rustc-env=TEST_FOO={}",timestamp);
         println!("cargo:rustc-cfg=feature=\"pass\"");
 
 
